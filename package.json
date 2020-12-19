@@ -1,12 +1,11 @@
 {
   "name": "node-logger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Logger Module",
   "main": "app.js",
   "scripts": {},
   "author": "gustavonuno1995@gmail.com",
-  "license": "UNLICENSED",
-  "private": true,
+  "license": "MIT",
   "dependencies": {
     "js-yaml": "^3.13.1",
     "winston": "^3.2.1"
