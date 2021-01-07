@@ -1,6 +1,8 @@
 const Winston = require('winston');
+const ExpressWinston = require('express-winston');
 
 let logger_manager = null;
+let logger_manager_express = null;
 
 module.exports = {
     create: (configuration) => {
@@ -41,8 +43,18 @@ module.exports = {
                 })
             );
         }
+
+        logger_manager_express = ExpressWinston.logger({
+            winstonInstance: logger_manager,
+            msg: "HTTP {{req.method}} - {{res.statusCode}} {{res.responseTime}}ms {{req.url}}",
+            colorize: false,
+
+        });
     },
     get: () => {
         return logger_manager;
-    }
+    },
+    getExpressMiddleware: () => {
+        return logger_manager_express;
+    },
 };
