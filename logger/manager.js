@@ -46,7 +46,7 @@ module.exports = {
 
         logger_manager_express = ExpressWinston.logger({
             winstonInstance: logger_manager,
-            msg: "HTTP {{req.method}} - {{res.statusCode}} {{res.responseTime}}ms {{req.url}}",
+            msg: "HTTP {{req.method}} - {{res.statusCode}} {{res.responseTime}}ms {{req.get('host')}}{{req.url}}",
             colorize: false,
 
         });
