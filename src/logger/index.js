@@ -1,15 +1,22 @@
 const Winston = require('winston');
 const ExpressWinston = require('express-winston');
 
-let logger_manager = null;
-let logger_manager_express = null;
+const configurations = require('./configuration');
+const ApolloLogger = require('./ApolloLogger');
+
+let vanilla = null;
+let express = null;
+let apollo = null;
 
 module.exports = {
-    create: (configuration) => {
+    init: () => {
+        configurations.load();
+        const configuration = configurations.get();
+
         let transports = [];
         const levels = configuration.transport.levels;
         const log_folder_path = configuration.path.log_folder_path;
-        
+
         levels.forEach(level => {
             if(level === 'combined') {
                 transports.push(new Winston.transports.File({ filename: log_folder_path + '/' + level + '.log', timestamp: true }));
@@ -18,12 +25,12 @@ module.exports = {
             }
         });
 
-        logger_manager = Winston.createLogger({
+        vanilla = Winston.createLogger({
             level: 'silly',
             format: Winston.format.combine(
                 Winston.format.label({ label: global.process.pid }),
                 Winston.format.timestamp({
-                    format: 'YYYY-MM-DD HH:mm:ss' 
+                    format: 'YYYY-MM-DD HH:mm:ss'
                 }),
                 Winston.format.errors({ stack: true }),
                 Winston.format.splat(),
@@ -33,9 +40,9 @@ module.exports = {
             ),
             transports: transports
         });
-        
+
         if(process.env.NODE_ENV !== 'production') {
-            logger_manager.add(
+            vanilla.add(
                 new Winston.transports.Console({
                     format: Winston.format.combine(
                         Winston.format.colorize()
@@ -44,17 +51,19 @@ module.exports = {
             );
         }
 
-        logger_manager_express = ExpressWinston.logger({
-            winstonInstance: logger_manager,
-            msg: "HTTP {{req.method}} - {{res.statusCode}} {{res.responseTime}}ms {{req.get('host')}}{{req.url}}",
-            colorize: false,
-
+        express = ExpressWinston.logger({
+            winstonInstance: vanilla,
+            msg: "HTTP {{req.method}} - {{res.statusCode}} {{res.responseTime}}ms {{req.url}}",
+            colorize: process.env.NODE_ENV !== 'production',
         });
+
+        apollo = new ApolloLogger(vanilla);
     },
     get: () => {
-        return logger_manager;
-    },
-    getExpressMiddleware: () => {
-        return logger_manager_express;
+        return {
+            vanilla,
+            express,
+            apollo,
+        };
     },
 };

@@ -1,8 +1,8 @@
 {
   "name": "node-logger-by-odasneves",
-  "version": "1.1.1",
-  "description": "Logger Module",
-  "main": "app.js",
+  "version": "1.2.0",
+  "description": "Loggers configured for easy integration",
+  "main": "src/index.js",
   "scripts": {},
   "author": "gustavonuno1995@gmail.com",
   "license": "MIT",

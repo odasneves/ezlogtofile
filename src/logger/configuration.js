@@ -1,6 +1,7 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
-const ConfigurationError = require('../errors/ConfigurationError');
+
+const ConfigurationError = require('./ConfigurationError');
 
 let configuration = {
     transport: {
@@ -17,14 +18,14 @@ module.exports = {
         try {
             input_configuration = yaml.safeLoad(fs.readFileSync('logger_config.yml', 'utf8'));
         } catch (err) {
-            throw new ConfigurationError('Configuration log not found: ' + err);  
+            throw new ConfigurationError('Configuration log not found: ' + err);
         }
 
         if(input_configuration.transport) {
             if(input_configuration.transport.levels) {
                 configuration.transport.levels = input_configuration.transport.levels;
             } else {
-                throw new ConfigurationError('Configuration missing configuration -> transport.levels');  
+                throw new ConfigurationError('Configuration missing configuration -> transport.levels');
             }
         } else {
             throw new ConfigurationError('Configuration missing configuration -> transport');
@@ -38,6 +39,10 @@ module.exports = {
             }
         } else {
             throw new ConfigurationError('Configuration missing configuration -> path');
+        }
+
+        if (!fs.existsSync(configuration.path.log_folder_path)){
+            fs.mkdirSync(configuration.path.log_folder_path);
         }
     },
     get: () => {
