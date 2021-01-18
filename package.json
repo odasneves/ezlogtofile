@@ -1,6 +1,6 @@
 {
   "name": "node-logger-by-odasneves",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Loggers configured for easy integration",
   "main": "src/index.js",
   "scripts": {},
