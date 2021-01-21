@@ -30,17 +30,17 @@ This section shows this modules file configurations.
 
 ### .logger.json
 
-  {
-    "transport": {
-      "levels": [
-        "silly",
-        "debug",
-        "verbose",
-        "info",
-        "warn",
-        "error",
-        "combined"
-      ]
-    },
-    "path": "logs"
-  }
+    {
+      "transport": {
+        "levels": [
+          "silly",
+          "debug",
+          "verbose",
+          "info",
+          "warn",
+          "error",
+          "combined"
+        ]
+      },
+      "path": "logs"
+    }
