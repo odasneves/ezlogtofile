@@ -12,10 +12,11 @@ This module contains the logger structure/configuration used in my Projects. It 
     logger.error('error');
 
 ### Express Middleware using [express-winston](https://www.npmjs.com/package/express-winston)
-    const express = require('express'); 
-    const app = express(); 
-    const ExpressWinston = require('express-winston');
+    import express from 'express'; 
+    import ExpressWinston from 'express-winston';
     import { Logger } from 'ezlogtofile';
+
+    const app = express(); 
 
     const expressLogger = ExpressWinston.logger({
         winstonInstance: Logger,
