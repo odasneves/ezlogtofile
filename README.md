@@ -1,4 +1,4 @@
-# EzLogToFile
+# ezlogtofile
 This module contains the logger structure/configuration used in my Projects. It uses [winston](https://www.npmjs.com/package/winston) as logger; Wrapped and configured for easy usage and integration.
 ## Examples
 
