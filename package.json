@@ -1,5 +1,5 @@
 {
-  "name": "odn-simple-logger",
+  "name": "ezlogtofile",
   "version": "2.0.0",
   "description": "Winston wrapped and configured for easy usage and integration.",
   "main": "dist/index.js",

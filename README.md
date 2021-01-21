@@ -1,8 +1,8 @@
-# Simple-Logger
+# EzLogToFile
 This module contains the logger structure/configuration used in my Projects. It uses [winston](https://www.npmjs.com/package/winston) as logger; Wrapped and configured for easy usage and integration.
 ## Examples
 
-    import { Logger } from 'odn-simple-logger';
+    import { Logger } from 'ezlogtofile';
     
     logger.silly('silly'); 
     logger.debug('debug'); 
@@ -15,7 +15,7 @@ This module contains the logger structure/configuration used in my Projects. It 
     const express = require('express'); 
     const app = express(); 
     const ExpressWinston = require('express-winston');
-    import { Logger } from 'odn-simple-logger';
+    import { Logger } from 'ezlogtofile';
 
     const expressLogger = ExpressWinston.logger({
         winstonInstance: Logger,
