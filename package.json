@@ -1,11 +1,12 @@
 {
   "name": "ezlogtofile",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Winston wrapped and configured for easy usage and integration.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "npm run build"
   },
   "author": "gustavonuno1995@gmail.com",
   "license": "MIT",
@@ -23,7 +24,6 @@
   "dependencies": {
     "winston": "^3.3.3"
   },
-  "prepublish": "tsc",
   "keywords": [
     "winston",
     "logger",
