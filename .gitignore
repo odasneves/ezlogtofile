@@ -107,5 +107,5 @@ public/
 
 # End of https://www.gitignore.io/api/node,visualstudiocode´
 
-logger_config.yml
-.idea
+.logger.json
+dist
