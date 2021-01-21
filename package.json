@@ -1,6 +1,6 @@
 {
   "name": "ezlogtofile",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Winston wrapped and configured for easy usage and integration.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,7 +30,6 @@
     "node",
     "nodejs",
     "typescript",
-    "express",
-    "apollo"
+    "express"
   ]
 }
